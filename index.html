@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support VetNest</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.paypal.com/sdk/js?client-id=AUz38Ohl2UvqGRaCCYZpAaFTWK3t049StHahAYLxzv0GZbwzOZMES4fDYgie5yq0h3YLT0eWZDp70uCJ&currency=USD" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <img src="public/logos/vetnest-logo.png" alt="VetNest Logo" class="logo">
+    <h1>Support VetNest</h1>
+    <p class="slogan">Connecting Veterans with Housing, Resources & Community Support</p>
+  </header>
+
+  <main>
+    <section class="donation-area">
+      <h2>Our Mission</h2>
+      <p>At VetNest, we connect veterans to housing, resources, and community support. Every donation helps us ensure no veteran is left without a place to call home.</p>
+      
+      <div class="total-raised">Total Raised: <strong id="total">$0.00</strong></div>
+
+      <label for="amount">Select Donation Amount:</label>
+      <select id="amount">
+        <option value="5.00">$5</option>
+        <option value="10.00" selected>$10</option>
+        <option value="25.00">$25</option>
+        <option value="50.00">$50</option>
+        <option value="custom">Custom</option>
+      </select>
+
+      <input type="number" id="custom-amount" placeholder="Enter custom amount" style="display:none;" />
+
+      <div id="paypal-button-container"></div>
+    </section>
+
+    <section class="share">
+      <p>Share this page:</p>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://vetnest.vercel.app" target="_blank">Facebook</a>
+      <a href="https://twitter.com/intent/tweet?text=Support%20VetNest%20today%20-%20https://vetnest.vercel.app" target="_blank">X/Twitter</a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vetnest.vercel.app" target="_blank">LinkedIn</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 VetNest. All rights reserved. Founded by Kevin Kitchens.</p>
+  </footer>
+</body>
+</html>
