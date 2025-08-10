@@ -46,17 +46,58 @@
 <body>
   <header>
     <!-- Inline “castle” logo (generic, not USACE) -->
-    <svg class="castle" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="24" y="96" width="208" height="120" rx="10" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
-      <path d="M64 96V56h24v16h16V56h24v16h16V56h24v40" stroke="#6ea8ff" stroke-width="6" fill="none"/>
-      <rect x="108" y="144" width="40" height="72" rx="6" fill="#0f62fe"/>
-      <rect x="44" y="144" width="40" height="40" rx="6" fill="#244b75"/>
-      <rect x="172" y="144" width="40" height="40" rx="6" fill="#244b75"/>
-      <circle cx="128" cy="116" r="8" fill="#ffb703"/>
-    </svg>
-    <div class="brand">
-      <div>
-        <div class="title">VetNestUSA</div>
+    <!-- VetNestUSA Triple-Tower Castle (custom SVG, not USACE insignia) -->
+<svg class="castle" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">VetNestUSA Castle</title>
+  <desc id="desc">Stylized three-tower castle with battlements and central gate.</desc>
+
+  <!-- Outer wall -->
+  <rect x="20" y="70" width="280" height="100" rx="8"
+        fill="#122840" stroke="#6ea8ff" stroke-width="6"/>
+
+  <!-- Left tower -->
+  <g>
+    <rect x="34" y="38" width="56" height="132" rx="4" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <!-- battlements -->
+    <rect x="34" y="32" width="12" height="12" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <rect x="56" y="32" width="12" height="12" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <rect x="78" y="32" width="12" height="12" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <!-- windows -->
+    <rect x="50" y="92" width="24" height="28" rx="3" fill="#244b75"/>
+  </g>
+
+  <!-- Center keep (taller) -->
+  <g>
+    <rect x="132" y="18" width="56" height="152" rx="4" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <!-- battlements -->
+    <rect x="132" y="12" width="12" height="12" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <rect x="154" y="12" width="12" height="12" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <rect x="176" y="12" width="12" height="12" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <!-- gate -->
+    <rect x="148" y="108" width="24" height="44" rx="4" fill="#0f62fe"/>
+    <circle cx="160" cy="130" r="3" fill="#ffb703"/>
+  </g>
+
+  <!-- Right tower (mirror of left) -->
+  <g>
+    <rect x="230" y="38" width="56" height="132" rx="4" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <!-- battlements -->
+    <rect x="230" y="32" width="12" height="12" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <rect x="252" y="32" width="12" height="12" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <rect x="274" y="32" width="12" height="12" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+    <!-- windows -->
+    <rect x="242" y="92" width="24" height="28" rx="3" fill="#244b75"/>
+  </g>
+
+  <!-- Parapet bricks along the wall -->
+  <g opacity="0.85">
+    <rect x="64"  y="70" width="16" height="10" fill="#17314f" stroke="#6ea8ff" stroke-width="4"/>
+    <rect x="104" y="70" width="16" height="10" fill="#17314f" stroke="#6ea8ff" stroke-width="4"/>
+    <rect x="200" y="70" width="16" height="10" fill="#17314f" stroke="#6ea8ff" stroke-width="4"/>
+    <rect x="240" y="70" width="16" height="10" fill="#17314f" stroke="#6ea8ff" stroke-width="4"/>
+  </g>
+</svg>
+
         <div class="tag">Helping Veterans find housing, support & trusted resources nationwide</div>
       </div>
     </div>
