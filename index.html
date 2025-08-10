@@ -2,54 +2,168 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Support VetNest</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VetNestUSA — Housing, Support & Resources for Veterans</title>
+  <meta name="description" content="VetNestUSA helps veterans find housing, support services, and trusted resources nationwide. Free for veterans. Sponsors can join to list services."/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏰</text></svg>">
+  <style>
+    :root{
+      --bg:#0a1a2b; --bg-soft:#0f2742; --brand:#0f62fe; --accent:#ffb703; --ok:#22c55e; --text:#eaf2ff; --muted:#b9c7da; --card:#0f2034;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; background:linear-gradient(180deg,var(--bg) 0%,#0b213a 60%, #0d2a49 100%); color:var(--text);}
+    a{color:var(--accent); text-decoration:none}
+    header{padding:32px 16px 16px; display:flex; align-items:center; justify-content:center; gap:16px; text-align:center; flex-wrap:wrap;}
+    .brand{display:flex; align-items:center; gap:14px;}
+    .logo{width:56px;height:56px}
+    .title{font-weight:800; font-size:clamp(28px,4vw,40px); letter-spacing:.5px}
+    .tag{margin-top:4px; color:var(--muted)}
+    .wrap{max-width:1100px; margin:0 auto; padding:20px}
+    .hero{background:linear-gradient(180deg,var(--bg-soft),rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:24px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .hero h2{margin:0 0 8px; font-size:clamp(22px,3.2vw,30px)}
+    .hero p{margin:0; color:var(--muted)}
+    .trust{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px; font-size:14px; color:var(--muted)}
+    .pill{border:1px solid rgba(255,255,255,.12); padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.03)}
+    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:22px}
+    .card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; box-shadow:0 8px 20px rgba(0,0,0,.25)}
+    .card h3{margin:0 0 8px}
+    .plans{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:8px}
+    .plan{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px}
+    .badge{font-size:12px; color:#052; background:rgba(34,197,94,.15); border:1px solid rgba(34,197,94,.35); padding:4px 8px; border-radius:999px; width:fit-content}
+    .free{border-top:4px solid var(--ok)}
+    .basic{border-top:4px solid var(--brand)}
+    .premium{border-top:4px solid var(--accent)}
+    .price{font-size:14px; color:var(--muted)}
+    footer{margin:30px 0 18px; text-align:center; color:var(--muted); font-size:14px}
+    .hotline{margin-top:8px; font-weight:700; color:#ffdca8}
+    .small{font-size:12px; color:var(--muted)}
+    .castle{width:56px;height:56px}
+    .cta{display:inline-block; margin-top:12px; padding:10px 14px; border-radius:10px; background:var(--brand); color:white; font-weight:700}
+    .cta:hover{filter:brightness(1.1)}
+    .hr{height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent); margin:18px 0}
+  </style>
 </head>
 <body>
   <header>
-    <img src="public/logos/vetnest-logo.png" alt="VetNest Logo" class="logo">
-    <h1>Support VetNest</h1>
-    <p class="slogan">Connecting Veterans with Housing, Resources & Community Support</p>
+    <!-- Inline “castle” logo (generic, not USACE) -->
+    <svg class="castle" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="24" y="96" width="208" height="120" rx="10" fill="#17314f" stroke="#6ea8ff" stroke-width="6"/>
+      <path d="M64 96V56h24v16h16V56h24v16h16V56h24v40" stroke="#6ea8ff" stroke-width="6" fill="none"/>
+      <rect x="108" y="144" width="40" height="72" rx="6" fill="#0f62fe"/>
+      <rect x="44" y="144" width="40" height="40" rx="6" fill="#244b75"/>
+      <rect x="172" y="144" width="40" height="40" rx="6" fill="#244b75"/>
+      <circle cx="128" cy="116" r="8" fill="#ffb703"/>
+    </svg>
+    <div class="brand">
+      <div>
+        <div class="title">VetNestUSA</div>
+        <div class="tag">Helping Veterans find housing, support & trusted resources nationwide</div>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section class="donation-area">
-      <h2>Our Mission</h2>
-      <p>At VetNest, we connect veterans to housing, resources, and community support. Every donation helps us ensure no veteran is left without a place to call home.</p>
-      
-      <div class="total-raised">Total Raised: <strong id="total">$0.00</strong></div>
-
-      <label for="amount">Select Donation Amount:</label>
-      <select id="amount">
-        <option value="5.00">$5</option>
-        <option value="10.00" selected>$10</option>
-        <option value="25.00">$25</option>
-        <option value="50.00">$50</option>
-        <option value="custom">Custom</option>
-      </select>
-
-      <input type="number" id="custom-amount" placeholder="Enter custom amount" style="display:none;" />
-
-      <!-- ✅ PayPal Classic Donate Button -->
-      <form action="https://www.paypal.com/donate" method="post" target="_blank" style="margin-top: 20px;">
-        <input type="hidden" name="business" value="kevinkitchens@kevinvetnestmx.com">
-        <input type="hidden" name="no_recurring" value="0">
-        <input type="hidden" name="currency_code" value="USD">
-        <input type="submit" value="Donate to VetNest" style="padding: 12px 24px; font-size: 18px; background-color: #0070ba; color: white; border: none; border-radius: 8px; cursor: pointer;">
-      </form>
+  <div class="wrap">
+    <section class="hero">
+      <h2>Built by and for the Veteran community</h2>
+      <p>Free access for Veterans. Sponsors and providers can join to list services and support those who served.</p>
+      <div class="trust">
+        <span class="pill">Secure PayPal subscriptions</span>
+        <span class="pill">No scams · Clear value</span>
+        <span class="pill">Veteran-first mission</span>
+      </div>
+      <a href="#join" class="cta">Join & Support Veterans</a>
     </section>
 
-    <section class="share">
-      <p>Share this page:</p>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://vetnest.vercel.app" target="_blank">Facebook</a>
-      <a href="https://twitter.com/intent/tweet?text=Support%20VetNest%20today%20-%20https://vetnest.vercel.app" target="_blank">X/Twitter</a>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://vetnest.vercel.app" target="_blank">LinkedIn</a>
-    </section>
-  </main>
+    <div class="grid">
+      <article class="card">
+        <h3>Find Resources</h3>
+        <p>Browse housing leads, local VA info, and vetted support organizations. Veterans always access free listings.</p>
+      </article>
+      <article class="card">
+        <h3>List Your Service</h3>
+        <p>Sponsors can list housing, jobs, services, and discounts. Premium boosts visibility where it matters most.</p>
+      </article>
+      <article class="card">
+        <h3>Ground Rules</h3>
+        <p>No predatory offers. No hidden fees. We verify and remove bad actors. Integrity over everything.</p>
+      </article>
+    </div>
 
-  <footer>
-    <p>© 2025 VetNest. All rights reserved. Founded by Kevin Kitchens.</p>
-  </footer>
+    <div class="hr"></div>
+
+    <section id="join" class="card">
+      <h3>Join VetNestUSA</h3>
+      <p class="small">Veterans use the platform free. Sponsors choose a plan below.</p>
+
+      <div class="plans">
+        <div class="plan free">
+          <span class="badge">Veterans</span>
+          <h4>Free</h4>
+          <div class="price">$0 / month</div>
+          <p>Access resource listings, tools, and support.</p>
+        </div>
+
+        <div class="plan basic">
+          <span class="badge">Sponsors</span>
+          <h4>Basic</h4>
+          <div class="price">$50 / month</div>
+          <ul class="small">
+            <li>Business listing & contact</li>
+            <li>Veteran-affiliated discount flag</li>
+            <li>Email support</li>
+          </ul>
+          <div id="paypal-basic"></div>
+        </div>
+
+        <div class="plan premium">
+          <span class="badge">Sponsors</span>
+          <h4>Premium</h4>
+          <div class="price">$100 / month</div>
+          <ul class="small">
+            <li>Featured placement + badge</li>
+            <li>Priority support</li>
+            <li>Early access to new features</li>
+          </ul>
+          <div id="paypal-premium"></div>
+        </div>
+      </div>
+
+      <p class="small">Questions? <a href="mailto:kevinkitchens@kevinvetnestmx.com">kevinkitchens@kevinvetnestmx.com</a></p>
+    </section>
+
+    <section class="card">
+      <h3>Fastlane (Optional — Later)</h3>
+      <p class="small">We can add PayPal Fastlane after launch to speed checkout—keeping it simple for day one.</p>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> VetNestUSA</div>
+      <div class="hotline">Suicide & Crisis Lifeline: Dial <strong>988</strong></div>
+      <div class="small">If you’re in crisis, please call 988 or 911 immediately.</div>
+    </footer>
+  </div>
+
+  <!-- PayPal Smart Subscribe (Replace YOUR_CLIENT_ID) -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&vault=true&intent=subscription"></script>
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Basic ($50) plan
+    paypal.Buttons({
+      style: { layout: 'vertical', label: 'subscribe', shape: 'rect' },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({ plan_id: 'P-3NS334670B097494ENCI2GIA' });
+      }
+    }).render('#paypal-basic');
+
+    // Premium ($100) plan
+    paypal.Buttons({
+      style: { layout: 'vertical', label: 'subscribe', shape: 'rect' },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({ plan_id: 'P-4YW70342253559620NCI2EFA' });
+      }
+    }).render('#paypal-premium');
+  </script>
 </body>
 </html>
