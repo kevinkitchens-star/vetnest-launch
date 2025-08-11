@@ -1,214 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VetNestUSA — Housing, Support & Resources for Veterans</title>
-  <meta name="description" content="VetNestUSA helps veterans find housing, support services, and trusted resources nationwide. Free for veterans. Sponsors can join to list services."/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏰</text></svg>">
-  <style>
-    :root{
-      --bg:#0a1a2b; --bg-soft:#0f2742; --brand:#0f62fe; --accent:#ffb703; --ok:#22c55e; --text:#eaf2ff; --muted:#b9c7da; --card:#0f2034;
-    }
-    *{box-sizing:border-box}
-    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif; background:linear-gradient(180deg,var(--bg) 0%,#0b213a 60%, #0d2a49 100%); color:var(--text);}
-    a{color:var(--accent); text-decoration:none}
-    header{padding:32px 16px 16px; display:flex; align-items:center; justify-content:center; gap:16px; text-align:center; flex-wrap:wrap;}
-    .brand{display:flex; align-items:center; gap:14px;}
-    .logo{width:56px;height:56px}
-    .title{font-weight:800; font-size:clamp(28px,4vw,40px); letter-spacing:.5px}
-    .tag{margin-top:4px; color:var(--muted)}
-    .wrap{max-width:1100px; margin:0 auto; padding:20px}
-    .hero{background:linear-gradient(180deg,var(--bg-soft),rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.08); border-radius:20px; padding:24px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .hero h2{margin:0 0 8px; font-size:clamp(22px,3.2vw,30px)}
-    .hero p{margin:0; color:var(--muted)}
-    .trust{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px; font-size:14px; color:var(--muted)}
-    .pill{border:1px solid rgba(255,255,255,.12); padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.03)}
-    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:22px}
-    .card{background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; box-shadow:0 8px 20px rgba(0,0,0,.25)}
-    .card h3{margin:0 0 8px}
-    .plans{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin-top:8px}
-    .plan{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px}
-    .badge{font-size:12px; color:#052; background:rgba(34,197,94,.15); border:1px solid rgba(34,197,94,.35); padding:4px 8px; border-radius:999px; width:fit-content}
-    .free{border-top:4px solid var(--ok)}
-    .basic{border-top:4px solid var(--brand)}
-    .premium{border-top:4px solid var(--accent)}
-    .price{font-size:14px; color:var(--muted)}
-    footer{margin:30px 0 18px; text-align:center; color:var(--muted); font-size:14px}
-    .hotline{margin-top:8px; font-weight:700; color:#ffdca8}
-    .small{font-size:12px; color:var(--muted)}
-    .castle{width:56px;height:56px}
-    .cta{display:inline-block; margin-top:12px; padding:10px 14px; border-radius:10px; background:var(--brand); color:white; font-weight:700}
-    .cta:hover{filter:brightness(1.1)}
-    .hr{height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent); margin:18px 0}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VetNestUSA – Housing, Support & Resources for Veterans</title>
+<meta name="description" content="VetNestUSA helps veterans find housing, support services, and trusted resources nationwide. Free for veterans. Sponsors can join to list services.">
+<link rel="icon" type="image/png" href="vetnest-logo.png">
+
+<style>
+:root {
+  --brand: #b80000;
+  --accent: #ff4444;
+  --text: #ffffff;
+  --muted: #7a7a7a;
+  --bg: #1a1a1a;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Header */
+header {
+  padding: 20px;
+  background: var(--brand);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.tagline {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* Sections */
+section {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 5px;
+}
+
+/* Buttons */
+button, .paypal-button {
+  background: var(--accent);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+footer {
+  background: #111;
+  padding: 20px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: var(--muted);
+}
+</style>
 </head>
 <body>
-  <header>
-    <!-- Inline “castle” logo (generic, not USACE) -->
-    <!-- VetNestUSA Triple-Tower Castle (custom SVG, not USACE insignia) -->
-<!-- VetNestUSA Triple-Tower Castle (custom SVG, red version) -->
-<!-- VetNestUSA Triple-Tower Castle (custom SVG, red version) -->
-<svg class="castle" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">VetNestUSA Castle</title>
-  <desc id="desc">Stylized three-tower castle with battlements and central gate.</desc>
 
-  <!-- Outer wall -->
-  <rect x="20" y="70" width="280" height="100" rx="8"
-        fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-
-  <!-- Left tower -->
-  <g>
-    <rect x="34" y="38" width="56" height="132" rx="4" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <!-- battlements -->
-    <rect x="34" y="32" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <rect x="56" y="32" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <rect x="78" y="32" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <!-- windows -->
-    <rect x="50" y="92" width="24" height="28" rx="3" fill="#aa2c2c"/>
-  </g>
-
-  <!-- Center keep (taller) -->
-  <g>
-    <rect x="132" y="18" width="56" height="152" rx="4" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <!-- battlements -->
-    <rect x="132" y="12" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <rect x="154" y="12" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <rect x="176" y="12" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <!-- gate -->
-    <rect x="148" y="108" width="24" height="44" rx="4" fill="#cc0000"/>
-    <circle cx="160" cy="130" r="3" fill="#ffb703"/>
-  </g>
-
-  <!-- Right tower -->
-  <g>
-    <rect x="230" y="38" width="56" height="132" rx="4" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <!-- battlements -->
-    <rect x="230" y="32" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <rect x="252" y="32" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <rect x="274" y="32" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-    <!-- windows -->
-    <rect x="242" y="92" width="24" height="28" rx="3" fill="#aa2c2c"/>
-  </g>
-
-  <!-- Parapet bricks -->
-  <g opacity="0.85">
-    <rect x="64"  y="70" width="16" height="10" fill="#8B0000" stroke="#ff4d4d" stroke-width="4"/>
-    <rect x="104" y="70" width="16" height="10" fill="#8B0000" stroke="#ff4d4d" stroke-width="4"/>
-    <rect x="200" y="70" width="16" height="10" fill="#8B0000" stroke="#ff4d4d" stroke-width="4"/>
-    <rect x="240" y="70" width="16" height="10" fill="#8B0000" stroke="#ff4d4d" stroke-width="4"/>
-  </g>
-</svg>
-
-
-
-        <div class="tag">Helping Veterans find housing, support & trusted resources nationwide</div>
-      </div>
-    </div>
-  </header>
-
-  <div class="wrap">
-    <section class="hero">
-      <h2>Built by and for the Veteran community</h2>
-      <p>Free access for Veterans. Sponsors and providers can join to list services and support those who served.</p>
-      <div class="trust">
-        <span class="pill">Secure PayPal subscriptions</span>
-        <span class="pill">No scams · Clear value</span>
-        <span class="pill">Veteran-first mission</span>
-      </div>
-      <a href="#join" class="cta">Join & Support Veterans</a>
-    </section>
-
-    <div class="grid">
-      <article class="card">
-        <h3>Find Resources</h3>
-        <p>Browse housing leads, local VA info, and vetted support organizations. Veterans always access free listings.</p>
-      </article>
-      <article class="card">
-        <h3>List Your Service</h3>
-        <p>Sponsors can list housing, jobs, services, and discounts. Premium boosts visibility where it matters most.</p>
-      </article>
-      <article class="card">
-        <h3>Ground Rules</h3>
-        <p>No predatory offers. No hidden fees. We verify and remove bad actors. Integrity over everything.</p>
-      </article>
-    </div>
-
-    <div class="hr"></div>
-
-    <section id="join" class="card">
-      <h3>Join VetNestUSA</h3>
-      <p class="small">Veterans use the platform free. Sponsors choose a plan below.</p>
-
-      <div class="plans">
-        <div class="plan free">
-          <span class="badge">Veterans</span>
-          <h4>Free</h4>
-          <div class="price">$0 / month</div>
-          <p>Access resource listings, tools, and support.</p>
-        </div>
-
-        <div class="plan basic">
-          <span class="badge">Sponsors</span>
-          <h4>Basic</h4>
-          <div class="price">$50 / month</div>
-          <ul class="small">
-            <li>Business listing & contact</li>
-            <li>Veteran-affiliated discount flag</li>
-            <li>Email support</li>
-          </ul>
-          <div id="paypal-basic"></div>
-        </div>
-
-        <div class="plan premium">
-          <span class="badge">Sponsors</span>
-          <h4>Premium</h4>
-          <div class="price">$100 / month</div>
-          <ul class="small">
-            <li>Featured placement + badge</li>
-            <li>Priority support</li>
-            <li>Early access to new features</li>
-          </ul>
-          <div id="paypal-premium"></div>
-        </div>
-      </div>
-
-      <p class="small">Questions? <a href="mailto:kevinkitchens@kevinvetnestmx.com">kevinkitchens@kevinvetnestmx.com</a></p>
-    </section>
-
-    <section class="card">
-      <h3>Fastlane (Optional — Later)</h3>
-      <p class="small">We can add PayPal Fastlane after launch to speed checkout—keeping it simple for day one.</p>
-    </section>
-
-    <footer>
-      <div>© <span id="year"></span> VetNestUSA</div>
-      <div class="hotline">Suicide & Crisis Lifeline: Dial <strong>988</strong></div>
-      <div class="small">If you’re in crisis, please call 988 or 911 immediately.</div>
-    </footer>
+<header>
+  <!-- Red Castle SVG -->
+  <svg width="60" height="60" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img">
+    <title>VetNestUSA Castle</title>
+    <desc>Stylized three-tower castle with battlements and central gate.</desc>
+    <rect x="20" y="108" width="280" height="100" rx="8" fill="#b80000" stroke="#fff" stroke-width="6"/>
+    <rect x="34" y="92" width="56" height="132" rx="4" fill="#b80000" stroke="#fff" stroke-width="6"/>
+    <rect x="132" y="78" width="56" height="152" rx="4" fill="#b80000" stroke="#fff" stroke-width="6"/>
+    <rect x="230" y="92" width="56" height="132" rx="4" fill="#b80000" stroke="#fff" stroke-width="6"/>
+    <rect x="148" y="148" width="44" height="44" rx="4" fill="#cc0000"/>
+  </svg>
+  <div>
+    <div class="brand-title">VetNestUSA</div>
+    <div class="tagline">Helping Veterans find housing, support & trusted resources nationwide</div>
   </div>
+</header>
 
-  <!-- PayPal Smart Subscribe (Replace YOUR_CLIENT_ID) -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AbCdEf1234567890XYZ&vault=true&intent=subscription"></script>
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+<section>
+  <h2>Mission Statement</h2>
+  <p>VetNestUSA’s mission is to connect veterans with safe housing, supportive services, and resources they can trust. Our platform is free for veterans, with sponsors and providers supporting our mission through affordable listing plans.</p>
+</section>
 
-    // Basic ($50) plan
-    paypal.Buttons({
-      style: { layout: 'vertical', label: 'subscribe', shape: 'rect' },
-      createSubscription: function(data, actions) {
-        return actions.subscription.create({ plan_id: 'P-3NS334670B097494ENCI2GIA' });
-      }
-    }).render('#paypal-basic');
+<section>
+  <h2>About the Founder</h2>
+  <p>Kevin Kitchens, a 100% combat-disabled veteran and former Airborne Combat Engineer, founded VetNestUSA to give back to the veteran community. Drawing from personal experience, Kevin ensures the platform maintains its integrity, accessibility, and mission-first focus.</p>
+</section>
 
-    // Premium ($100) plan
-    paypal.Buttons({
-      style: { layout: 'vertical', label: 'subscribe', shape: 'rect' },
-      createSubscription: function(data, actions) {
-        return actions.subscription.create({ plan_id: 'P-4YW70342253559620NCI2EFA' });
-      }
-    }).render('#paypal-premium');
-  </script>
+<section>
+  <h2>Listing Standards</h2>
+  <ul>
+    <li>No false or misleading advertisements</li>
+    <li>All listings must benefit veterans directly</li>
+    <li>Respectful and professional conduct is required</li>
+    <li>VetNestUSA reserves the right to remove any listing that violates these standards</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Membership Options</h2>
+  <div id="paypal-container-BASIC"></div>
+  <div id="paypal-container-PREMIUM"></div>
+</section>
+
+<section>
+  <h2>Contact & Support</h2>
+  <p>Email: <a href="mailto:kevinkitchens@kevinvetnestmx.com">kevinkitchens@kevinvetnestmx.com</a></p>
+</section>
+
+<footer>
+  © 2025 VetNestUSA – All Rights Reserved
+</footer>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AUz38Ohl2UvqGRaCCYZpAaFTWK3t049StHahAYLxzv0GZbwzOZMES4fDYgie5yq0h3YLT0eWZDp70uCJ&components=buttons&vault=true&intent=subscription"></script>
+<script>
+paypal.Buttons({
+    style: { shape: 'pill', color: 'gold', layout: 'vertical', label: 'subscribe' },
+    createSubscription: function(data, actions) {
+      return actions.subscription.create({ plan_id: 'P-3NS334670B097494ENCI2GIA' });
+    }
+}).render('#paypal-container-BASIC');
+
+paypal.Buttons({
+    style: { shape: 'pill', color: 'blue', layout: 'vertical', label: 'subscribe' },
+    createSubscription: function(data, actions) {
+      return actions.subscription.create({ plan_id: 'P-4YW70342253559620NCI2EFA' });
+    }
+}).render('#paypal-container-PREMIUM');
+</script>
+
 </body>
 </html>
+
+
