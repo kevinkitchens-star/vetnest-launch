@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resources & Map — VetNestUSA</title>
+  <meta name="description" content="Browse properties and see nearby amenities—hospitals, groceries, transit, parks, and more. Open any spot in Google Earth 3D or Street View." />
+  <!-- Leaflet (free) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <style>
+    :root{
+      --bg:#0a1a2b; --bg2:#0d2a49; --card:#0f2034; --line:rgba(255,255,255,.12);
+      --text:#eaf2ff; --muted:#b9c7da; --brand:#0f62fe; --accent:#ffb703;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
+      background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%)}
+    a{color:var(--accent); text-decoration:none}
+
+    .wrap{max-width:1200px; margin:0 auto; padding:18px}
+    header{padding:10px 0 14px; display:flex; justify-content:space-between; align-items:center; gap:10px}
+    .brand{font-weight:800; display:flex; align-items:center; gap:8px}
+    .brand .emoji{font-size:20px}
+    .links a{color:var(--muted); margin-left:14px}
+    .links a:hover{color:var(--text)}
+
+    .map-layout{display:grid; grid-template-columns:1fr; gap:14px}
+    @media (min-width:1000px){ .map-layout{ grid-template-columns: 340px 1fr } }
+
+    .panel{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:14px; box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    .panel h2{margin:0 0 8px; font-size:18px}
+    .panel label{font-size:14px; color:var(--muted)}
+    .row{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0}
+    input[type="text"], select{
+      width:100%; padding:10px 12px; border-radius:10px; border:1px solid var(--line);
+      background:rgba(255,255,255,.05); color:var(--text)
+    }
+    .pill{display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); border-radius:999px; padding:8px 10px; background:rgba(255,255,255,.04); font-size:12px}
+    .muted{color:var(--muted); font-size:12px}
+    .btn{display:inline-block; padding:10px 12px; border-radius:10px; background:var(--brand); color:#fff; font-weight:700}
+    .btn.alt{background:var(--accent)}
+    .btn.ghost{background:rgba(255,255,255,.06); border:1px solid var(--line)}
+    .btn + .btn{margin-left:8px}
+
+    #map{width:100%; height:70vh; min-height:420px; border:1px solid var(--line); border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    .list{margin-top:10px; max-height:36vh; overflow:auto; border-top:1px dashed var(--line); padding-top:8px}
+    .item{padding:8px; border:1px solid var(--line); border-radius:10px; background:rgba(255,255,255,.03); margin-bottom:8px; cursor:pointer}
+    .item:hover{filter:brightness(1.08)}
+    .item .name{font-weight:700}
+    .legend{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .legend .dot{width:10px; height:10px; border-radius:50%}
+
+    footer{margin:22px 0 12px; text-align:center; color:var(--muted); font-size:14px}
+
+    /* Leaflet popup dark tweak */
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip{
+      background:#0f2034; color:var(--text); border:1px solid var(--line);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><span class="emoji">🏰</span><span>VetNestUSA</span></div>
+      <div class="links">
+        <a href="index.html">Home</a>
+        <a href="join.html">Join</a>
+        <a href="donate.html">Donate</a>
+      </div>
+    </header>
+
+    <div class="map-layout">
+      <aside class="panel">
+        <h2>Find Properties & Amenities</h2>
+
+        <label for="search">Search address or city</label>
+        <input id="search" type="text" placeholder="e.g., 123 Main St, Austin TX">
+
+        <div class="row">
+          <div style="flex:1">
+            <label for="prop">Sample property</label>
+            <select id="prop">
+              <option value="">— Choose a sample —</option>
+              <option value="30.2672,-97.7431">Austin, TX (Downtown)</option>
+              <option value="29.4241,-98.4936">San Antonio, TX (Downtown)</option>
+              <option value="32.7767,-96.7970">Dallas, TX (Downtown)</option>
+            </select>
+          </div>
+          <div>
+            <label for="radius">Radius</label>
+            <select id="radius">
+              <option value="500">500 m</option>
+              <option value="1000" selected>1 km</option>
+              <option value="2000">2 km</option>
+              <option value="5000">5 km</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label>Amenities (pick up to 3 for speed)</label>
+          <div class="row">
+            <label class="pill"><input type="checkbox" class="amenity" value="hospital"> Hospital</label>
+            <label class="pill"><input type="checkbox" class="amenity" value="pharmacy"> Pharmacy</label>
+            <label class="pill"><input type="checkbox" class="amenity" value="grocery"> Grocery</label>
+            <label class="pill"><input type="checkbox" class="amenity" value="school"> School</label>
+            <label class="pill"><input type="checkbox" class="amenity" value="gym"> Gym</label>
+            <label class="pill"><input type="checkbox" class="amenity" value="park"> Park</label>
+            <label class="pill"><input type="checkbox" class="amenity" value="transit"> Transit</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <button id="searchAmenities" class="btn">Search Amenities</button>
+          <button id="clearAmenities" class="btn ghost">Clear</button>
+        </div>
+
+        <div class="row">
+          <button id="earth" class="btn alt">Open in Google Earth 3D</button>
+          <button id="street" class="btn ghost">Street View</button>
+        </div>
+
+        <div class="legend">
+          <div class="dot" style="background:#ffb703"></div><span class="muted">Property / Center</span>
+          <div class="dot" style="background:#22c55e"></div><span class="muted">Amenities</span>
+        </div>
+
+        <div class="list" id="amenitiesList" aria-live="polite"></div>
+        <div class="muted">Tip: click a result to zoom to it.</div>
+      </aside>
+
+      <main>
+        <div id="map" role="region" aria-label="Map showing properties and nearby amenities"></div>
+      </main>
+    </div>
+
+    <footer>© <span id="year"></span> VetNestUSA</footer>
+  </div>
+
+  <script>
+    // --- Map init (Leaflet + OSM tiles - free) ---
+    const map = L.map('map', { zoomControl: true }).setView([39.5, -98.35], 5);
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    });
+    tiles.addTo(map);
+
+    const centerMarker = L.circleMarker([39.5, -98.35], {
+      radius: 7, color:'#b07a02', weight:2, fill:true, fillColor:'#ffb703', fillOpacity:1
+    }).addTo(map);
+
+    let amenityMarkers = [];
+    const yr = document.getElementById('year'); yr.textContent = new Date().getFullYear();
+
+    // --- Search by address/city using Nominatim (free, polite usage only) ---
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('keydown', async (e) => {
+      if (e.key !== 'Enter') return;
+      const q = searchInput.value.trim();
+      if (!q) return;
+      try{
+        const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(q)}&accept-language=en&email=kevinkitchens@kevinvetnestmx.com`;
+        const res = await fetch(url, { headers: { 'Accept': 'application/json' }});
+        const data = await res.json();
+        if (!data.length) { alert('No results. Try a city and state.'); return; }
+        const { lat, lon } = data[0];
+        setCenter(parseFloat(lat), parseFloat(lon), 14);
+      }catch(err){ console.error(err); alert('Search failed. Try again.'); }
+    });
+
+    // Sample property dropdown
+    document.getElementById('prop').addEventListener('change', (e) => {
+      const val = e.target.value;
+      if (!val) return;
+      const [lat, lng] = val.split(',').map(Number);
+      setCenter(lat, lng, 14);
+    });
+
+    // Buttons
+    document.getElementById('searchAmenities').addEventListener('click', runAmenitySearches);
+    document.getElementById('clearAmenities').addEventListener('click', clearAmenities);
+    document.getElementById('earth').addEventListener('click', openEarth);
+    document.getElementById('street').addEventListener('click', openStreetView);
+
+    function setCenter(lat, lng, zoom=14){
+      map.setView([lat, lng], zoom);
+      centerMarker.setLatLng([lat, lng]);
+    }
+
+    function selectedAmenityTypes(){
+      const boxes = Array.from(document.querySelectorAll('.amenity:checked'));
+      return boxes.slice(0,3).map(b => b.value); // cap at 3 (friendly to Overpass)
+    }
+
+    // Map amenity selections to OSM tags
+    function overpassFiltersFor(type){
+      switch(type){
+        case 'hospital': return ['amenity=hospital'];
+        case 'pharmacy': return ['amenity=pharmacy'];
+        case 'grocery':  return ['shop=supermarket','amenity=marketplace'];
+        case 'school':   return ['amenity=school','amenity=college','amenity=university'];
+        case 'gym':      return ['leisure=fitness_centre','sport=fitness'];
+        case 'park':     return ['leisure=park'];
+        case 'transit':  return ['public_transport=station','railway=station','amenity=bus_station','highway=bus_stop'];
+        default: return [];
+      }
+    }
+
+    async function runAmenitySearches(){
+      const types = selectedAmenityTypes();
+      const radius = Number(document.getElementById('radius').value) || 1000;
+      const c = map.getCenter();
+      if(!types.length){ alert('Pick at least one amenity.'); return; }
+      clearAmenities();
+      const list = document.getElementById('amenitiesList');
+
+      // Build a single Overpass query combining selected types
+      let queries = [];
+      types.forEach(t => {
+        const filters = overpassFiltersFor(t);
+        filters.forEach(f => {
+          // node/way/relation around center
+          queries.push(`node[${f}](around:${radius},${c.lat},${c.lng});`);
+          queries.push(`way[${f}](around:${radius},${c.lat},${c.lng});`);
+          queries.push(`relation[${f}](around:${radius},${c.lat},${c.lng});`);
+        });
+      });
+      const overpass = `[out:json][timeout:25];(${queries.join('')});out center 60;`;
+
+      try{
+        const resp = await fetch('https://overpass-api.de/api/interpreter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+          body: new URLSearchParams({ data: overpass })
+        });
+        const data = await resp.json();
+        const elements = (data && data.elements) ? data.elements.slice(0, 120) : []; // soft cap
+
+        elements.forEach(el => {
+          const name = (el.tags && (el.tags.name || el.tags.brand)) || '(Unnamed)';
+          // node: lat/lon; way/relation: center.{lat,lon}
+          const lat = el.lat || (el.center && el.center.lat);
+          const lon = el.lon || (el.center && el.center.lon);
+          if (lat == null || lon == null) return;
+
+          const m = L.circleMarker([lat, lon], {
+            radius: 6, color:'#0b6b32', weight:2, fill:true, fillColor:'#22c55e', fillOpacity:1
+          }).addTo(map);
+          m.bindPopup(`<strong>${name}</strong>${el.tags && el.tags['addr:street'] ? '<br>'+el.tags['addr:street'] : ''}`);
+          amenityMarkers.push(m);
+
+          const item = document.createElement('div');
+          item.className = 'item';
+          item.innerHTML = `<div class="name">${name}</div><div class="muted">${lat.toFixed(5)}, ${lon.toFixed(5)}</div>`;
+          item.addEventListener('click', () => {
+            map.panTo([lat, lon]); map.setZoom(15); m.openPopup();
+          });
+          list.appendChild(item);
+        });
+
+        if (!elements.length){
+          list.innerHTML = '<div class="muted">No results in range. Try a larger radius or different amenities.</div>';
+        }
+      }catch(err){
+        console.error(err);
+        alert('Amenity search failed. Please try again in a moment.');
+      }
+    }
+
+    function clearAmenities(){
+      amenityMarkers.forEach(m => m.remove());
+      amenityMarkers = [];
+      document.getElementById('amenitiesList').innerHTML = '';
+    }
+
+    function openEarth(){
+      const c = map.getCenter();
+      window.open(`https://earth.google.com/web/search/${c.lat.toFixed(6)},%20${c.lng.toFixed(6)}`, '_blank');
+    }
+
+    function openStreetView(){
+      const c = map.getCenter();
+      window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${c.lat},${c.lng}`, '_blank');
+    }
+  </script>
+</body>
+</html>
