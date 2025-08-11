@@ -56,9 +56,10 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="brandrow">
-      <!-- Red triple-tower castle (custom, not official insignia) -->
+ <header>
+  <div class="brandrow" style="flex-direction:column">
+    <div>
+      <!-- Red triple-tower castle (custom, not the official insignia) -->
       <svg class="castle" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VetNestUSA Castle">
         <rect x="20" y="70" width="280" height="100" rx="8" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
         <g>
@@ -73,8 +74,7 @@
           <rect x="132" y="12" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
           <rect x="154" y="12" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
           <rect x="176" y="12" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
-          <rect x="148" y="108" width="24" height="44" rx="4" fill="#cc0000"/>
-          <circle cx="160" cy="130" r="3" fill="#ffb703"/>
+          <rect x="148" y="108" width="24" height="44" rx="4" fill="#cc0000"/><circle cx="160" cy="130" r="3" fill="#ffb703"/>
         </g>
         <g>
           <rect x="230" y="38" width="56" height="132" rx="4" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
@@ -90,13 +90,19 @@
           <rect x="240" y="70" width="16" height="10" fill="#8B0000" stroke="#ff4d4d" stroke-width="4"/>
         </g>
       </svg>
-
-      <div>
-        <div class="title">VetNestUSA</div>
-        <div class="tag">Helping veterans find housing, credible services & community support</div>
-      </div>
     </div>
-  </header>
+
+    <div>
+      <div class="title">VetNestUSA</div>
+      <div class="tag">Housing • Credible Services • Community Support</div>
+    </div>
+
+    <div class="figcap">
+      Inspired by the Engineer castle — a symbol of building, resilience, and service. Original homage, not the official insignia.
+    </div>
+  </div>
+</header>
+
 
   <div class="wrap">
     <section class="hero">
