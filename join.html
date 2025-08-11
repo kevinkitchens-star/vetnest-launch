@@ -57,3 +57,103 @@
       </g>
       <g>
         <rect x="230" y="38" width="56" height="132" rx="4" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
+        <rect x="230" y="32" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
+        <rect x="252" y="32" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
+        <rect x="274" y="32" width="12" height="12" fill="#8B0000" stroke="#ff4d4d" stroke-width="6"/>
+        <rect x="242" y="92" width="24" height="28" rx="3" fill="#aa2c2c"/>
+      </g>
+      <g opacity="0.85">
+        <rect x="64"  y="70" width="16" height="10" fill="#8B0000" stroke="#ff4d4d" stroke-width="4"/>
+        <rect x="104" y="70" width="16" height="10" fill="#8B0000" stroke="#ff4d4d" stroke-width="4"/>
+        <rect x="200" y="70" width="16" height="10" fill="#8B0000" stroke="#ff4d4d" stroke-width="4"/>
+        <rect x="240" y="70" width="16" height="10" fill="#8B0000" stroke="#ff4d4d" stroke-width="4"/>
+      </g>
+    </svg>
+    <h1>Join VetNestUSA</h1>
+    <div class="tag">Veterans access resources free. Sponsors and providers can join to support the mission.</div>
+  </header>
+
+  <div class="wrap">
+    <section class="card">
+      <h2 style="margin:0 0 8px">Choose a plan</h2>
+      <p class="small">Subscriptions help fund platform operations while keeping veteran access free.</p>
+
+      <div class="plans">
+        <div class="plan free">
+          <span class="badge">Veterans</span>
+          <h3>Free</h3>
+          <div class="price">$0 / month</div>
+          <p class="small">Access resource listings, tools, and support.</p>
+        </div>
+
+        <div class="plan basic">
+          <span class="badge">Sponsors</span>
+          <h3>Basic</h3>
+          <div class="price">$50 / month</div>
+          <ul class="small">
+            <li>Business listing & contact</li>
+            <li>Veteran-affiliated discount flag</li>
+            <li>Email support</li>
+          </ul>
+          <div id="paypal-basic"></div>
+        </div>
+
+        <div class="plan premium">
+          <span class="badge">Sponsors</span>
+          <h3>Premium</h3>
+          <div class="price">$100 / month</div>
+          <ul class="small">
+            <li>Featured placement + badge</li>
+            <li>Priority support</li>
+            <li>Early access to new features</li>
+          </ul>
+          <div id="paypal-premium"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:16px">
+      <h3>Listing Standards</h3>
+      <p>All listings must be accurate, transparent, and veteran-respectful. We remove misleading or predatory offers.</p>
+      <ul class="small">
+        <li>Real contact and pricing required</li>
+        <li>Veteran discounts must be honored as stated</li>
+        <li>Clear terms—no hidden fees</li>
+      </ul>
+    </section>
+
+    <section class="card" style="margin-top:16px">
+      <h3>Questions?</h3>
+      <p>Email <a href="mailto:kevinkitchens@kevinvetnestmx.com">kevinkitchens@kevinvetnestmx.com</a></p>
+      <p class="small">Veteran-affiliated sponsors may be eligible for discounted placement.</p>
+    </section>
+
+    <footer>
+      <div style="margin-top:16px">© <span id="year"></span> VetNestUSA</div>
+      <div class="small" style="margin-top:6px">Suicide & Crisis Lifeline: Dial <strong>988</strong></div>
+    </footer>
+  </div>
+
+  <!-- PayPal SDK (your Client ID) -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AUz38Ohl2UvqGRaCCYZpAaFTWK3t049StHahAYLxzv0GZbwzOZMES4fDYgie5yq0h3YLT0eWZDp70uCJ&vault=true&intent=subscription"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    if (window.paypal) {
+      paypal.Buttons({
+        style: { layout: 'vertical', label: 'subscribe', shape: 'rect' },
+        createSubscription: (data, actions) =>
+          actions.subscription.create({ plan_id: 'P-3NS334670B097494ENCI2GIA' })
+      }).render('#paypal-basic').catch(err => console.error('Basic button error:', err));
+
+      paypal.Buttons({
+        style: { layout: 'vertical', label: 'subscribe', shape: 'rect' },
+        createSubscription: (data, actions) =>
+          actions.subscription.create({ plan_id: 'P-4YW70342253559620NCI2EFA' })
+      }).render('#paypal-premium').catch(err => console.error('Premium button error:', err));
+    } else {
+      console.error('PayPal SDK failed to load.');
+    }
+  </script>
+</body>
+</html>
