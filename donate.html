@@ -4,107 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Donate — VetNestUSA</title>
-  <meta name="description" content="Donate to VetNestUSA to keep access free for veterans and support verified resources."/>
+  <meta name="description" content="Support VetNestUSA so veterans can access resources free."/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0a1a2b; --bg2:#0d2a49; --card:#0f2034; --line:rgba(255,255,255,.12);
-      --text:#eaf2ff; --muted:#b9c7da; --brand:#0f62fe; --accent:#ffb703;
-    }
-    *{box-sizing:border-box}
-    body{ margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
-      background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%); }
-    a{color:var(--accent); text-decoration:none}
-    .wrap{max-width:800px; margin:0 auto; padding:22px}
-
-    header{ text-align:center; padding:26px 0 10px }
-    .title{ font-weight:800; font-size:clamp(26px,4vw,36px) }
-    .tag{ color:var(--muted); margin-top:6px }
-    .motto{ margin-top:4px; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.12em }
-
-    .card{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:0 8px 24px rgba(0,0,0,.25); margin-top:14px }
-    .row{ display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 6px }
-    .amt{ border:1px solid var(--line); background:rgba(255,255,255,.05); padding:10px 12px; border-radius:12px; cursor:pointer }
-    .amt.active{ outline:2px solid var(--accent) }
-    input[type="number"]{ width:120px; padding:10px 12px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.05); color:var(--text) }
-
-    footer{ margin:26px 0 18px; text-align:center; color:var(--muted); font-size:14px }
+    :root{--bg:#0b1228; --card:#ffffff; --line:#dbe5f3; --text:#0f1625; --muted:#425067; --accent:#ffd166}
+    body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; background:linear-gradient(180deg,#0b1228 0%, #101a37 100%); color:#f6fbff}
+    .wrap{max-width:780px; margin:0 auto; padding:24px}
+    .card{background:#fff; color:var(--text); border:1px solid var(--line); border-radius:14px; padding:18px; box-shadow:0 8px 18px rgba(0,0,0,.16)}
+    h1{text-align:center}
+    .btn{display:inline-block; padding:10px 14px; border-radius:10px; border:1px solid #dbe5f3; background:#fff; color:#0f1625; text-decoration:none}
+    .btn.alt{background:var(--accent); border-color:var(--accent); color:#0f1625; font-weight:700}
+    p.small{color:#cdd8e9}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <div class="title">Donate to VetNestUSA</div>
-      <div class="tag">Keep access free for veterans. Fund verification and support.</div>
-      <div class="motto">Adapt and overcome</div>
-    </header>
-
-    <section class="card">
-      <h2 style="margin:0 0 8px">Choose an amount</h2>
-      <div class="row" id="amount-row">
-        <button class="amt" data-amount="10">$10</button>
-        <button class="amt" data-amount="25">$25</button>
-        <button class="amt" data-amount="50">$50</button>
-        <button class="amt" data-amount="100">$100</button>
-        <div style="display:flex; align-items:center; gap:8px">
-          <span class="amt" style="cursor:default">Other</span>
-          <input id="other" type="number" min="1" step="1" placeholder="Amount" />
-        </div>
-      </div>
-
-      <div id="paypal-donate" style="margin-top:12px"></div>
-      <p style="color:var(--muted); font-size:13px; margin-top:10px">
-        Your donation is a voluntary gift to support operations and verification. It is not a purchase of goods or services.
-      </p>
-    </section>
-
-    <p style="margin-top:14px">
-      <a href="index.html">← Back to Home</a>
-    </p>
-
-    <footer>© <span id="year"></span> VetNestUSA</footer>
+    <h1>Donate to VetNestUSA</h1>
+    <div class="card">
+      <p>Your donation keeps the platform free for veterans and helps us verify listings.</p>
+      <p><em>Coming soon:</em> one-time donations via PayPal. For now, you can:</p>
+      <ul>
+        <li>Become a <strong>Basic</strong> or <strong>Premium</strong> sponsor on the <a href="join.html">Join</a> page.</li>
+        <li>Or email us directly: <a href="mailto:kevinkitchens@kevinvetnestmx.com">kevinkitchens@kevinvetnestmx.com</a></li>
+      </ul>
+      <p><a class="btn alt" href="join.html">Become a sponsor</a></p>
+    </div>
+    <p style="text-align:center; margin-top:14px"><a class="btn" href="index.html">← Back to Home</a></p>
+    <p class="small" style="text-align:center">Suicide & Crisis Lifeline: <strong>988</strong></p>
   </div>
-
-  <!-- Separate PayPal SDK namespace for one-time donations (intent=capture) -->
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=AUz38Ohl2UvqGRaCCYZpAaFTWK3t049StHahAYLxzv0GZbwzOZMES4fDYgie5yq0h3YLT0eWZDp70uCJ&components=buttons&intent=capture"
-    data-namespace="donateSDK">
-  </script>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Amount selection
-    const row = document.getElementById('amount-row');
-    const buttons = [...row.querySelectorAll('.amt[data-amount]')];
-    const other = document.getElementById('other');
-    let current = 25; // default
-
-    function setActive(val){
-      current = val;
-      buttons.forEach(b => b.classList.toggle('active', Number(b.dataset.amount) === Number(val)));
-    }
-    buttons.forEach(b => b.addEventListener('click', () => { setActive(b.dataset.amount); other.value = ''; }));
-    other.addEventListener('input', () => {
-      const v = Number(other.value);
-      if (v > 0) { setActive(v); buttons.forEach(b => b.classList.remove('active')); }
-    });
-    setActive(current);
-
-    // Render donate button using the separate SDK namespace
-    donateSDK.Buttons({
-      style: { layout: 'vertical', label: 'donate', shape: 'rect' },
-      createOrder: (data, actions) => {
-        const amount = Number(current) > 0 ? Number(current).toFixed(2) : '25.00';
-        return actions.order.create({
-          purchase_units: [{ amount: { value: amount } }]
-        });
-      },
-      onApprove: (data, actions) => actions.order.capture().then(() => {
-        alert('Thank you for supporting VetNestUSA!');
-        window.location.href = 'index.html';
-      }),
-      onError: (err) => console.error('Donate error:', err)
-    }).render('#paypal-donate');
-  </script>
 </body>
 </html>
