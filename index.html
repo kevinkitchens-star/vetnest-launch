@@ -23,6 +23,23 @@
   --brand:#2f81f7;   /* vivid blue CTA */
   --accent:#ffd166;  /* warm gold accent */
   --ok:#22c55e;
+      /* Light cards mode (high separation) */
+.lightcards .card,
+.lightcards .sidecard,
+.lightcards .faq details {
+  background:#ffffff;
+  color:#0f1625;
+  border:1px solid #dbe5f3;
+}
+.lightcards .card p,
+.lightcards ul.small,
+.lightcards .tmeta,
+.lightcards .small { color:#253042; }
+
+.lightcards .btn-secondary { background:#fff; border-color:#e4ecf7 }
+.lightcards .trustlogo { background:#fff; border-color:#e4ecf7; color:#4b5563; }
+
+/* Keep hero + nav dark for drama */
 }
     }
     html{scroll-behavior:smooth}
@@ -30,7 +47,8 @@
     body{
       margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
       background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%); background-color:#0a1a2b;
-    }
+      <body class="lightcards">
+      }
     a{color:var(--accent); text-decoration:none}
     h1,h2,h3,h4{letter-spacing:.2px}
 
