@@ -10,45 +10,28 @@
 
   <style>
     :root{
-  /* Higher contrast palette */
-  --bg:#090e1a;      /* darker page background */
-  --bg2:#0e1a33;     /* deeper gradient end */
-  --card:#142345;    /* brighter card so it pops off bg */
-  --line:rgba(255,255,255,.22);
+      /* High-contrast dark */
+      --bg:#090e1a;
+      --bg2:#0e1a33;
+      --card:#142345;
+      --line:rgba(255,255,255,.22);
 
-  --text:#f6fbff;    /* brighter text */
-  --muted:#cdd8e9;   /* brighter muted text */
+      --text:#f6fbff;
+      --muted:#cdd8e9;
 
-  /* Punchier brand/accent so buttons stand out */
-  --brand:#2f81f7;   /* vivid blue CTA */
-  --accent:#ffd166;  /* warm gold accent */
-  --ok:#22c55e;
-      /* Light cards mode (high separation) */
-.lightcards .card,
-.lightcards .sidecard,
-.lightcards .faq details {
-  background:#ffffff;
-  color:#0f1625;
-  border:1px solid #dbe5f3;
-}
-.lightcards .card p,
-.lightcards ul.small,
-.lightcards .tmeta,
-.lightcards .small { color:#253042; }
+      --brand:#2f81f7;   /* CTA */
+      --accent:#ffd166;  /* gold */
+      --ok:#22c55e;
 
-.lightcards .btn-secondary { background:#fff; border-color:#e4ecf7 }
-.lightcards .trustlogo { background:#fff; border-color:#e4ecf7; color:#4b5563; }
-
-/* Keep hero + nav dark for drama */
-}
+      --glass:rgba(255,255,255,.06);
     }
+
     html{scroll-behavior:smooth}
     *{box-sizing:border-box}
     body{
       margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
-      background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%); background-color:#0a1a2b;
-      <body class="lightcards">
-      }
+      background:linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%); background-color:#090e1a;
+    }
     a{color:var(--accent); text-decoration:none}
     h1,h2,h3,h4{letter-spacing:.2px}
 
@@ -62,7 +45,7 @@
     .nav-links a{padding:8px 10px; border-radius:10px}
     .nav-links a:hover{background:var(--glass)}
 
-    /* HEADER */
+    /* WRAP / HEADER */
     .wrap{max-width:1100px; margin:0 auto; padding:20px}
     header{padding:24px 16px 6px; text-align:center}
     .brandrow{display:flex; gap:14px; align-items:center; justify-content:center; flex-wrap:wrap; flex-direction:column}
@@ -95,4 +78,341 @@
     .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
     .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; box-shadow:0 8px 24px rgba(0,0,0,.25)}
     .card h3{margin:0 0 8px; letter-spacing:.2px}
-    .card p{margin:0 0 8px; color:var(--t
+    .card p{margin:0 0 8px; color:var(--text); line-height:1.55}
+    .small{font-size:13px; color:var(--muted)}
+    ul.small{margin:8px 0 0 18px; text-align:left}
+    ul.small li{margin:4px 0}
+
+    /* Trust bar */
+    .section-title{display:inline-block; position:relative; padding-bottom:6px}
+    .section-title::after{content:""; position:absolute; left:0; right:0; bottom:0; height:3px;
+      background: linear-gradient(90deg, var(--accent), transparent); border-radius:3px}
+    .trustbar{display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin:14px 0 6px}
+    .trustlogo{width:120px; height:36px; border:1px dashed var(--line); border-radius:10px; background:rgba(255,255,255,.03);
+      display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:12px; filter:contrast(90%) grayscale(100%)}
+
+    /* Plans */
+    .plans{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
+    .plan{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02)); border:1px solid var(--line);
+      border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:10px}
+    .badge{font-size:12px; color:#052; background:rgba(34,197,94,.15); border:1px solid rgba(34,197,94,.35); padding:4px 8px; border-radius:999px; width:fit-content}
+    .free{border-top:4px solid var(--ok)} .basic{border-top:4px solid var(--brand)} .premium{border-top:4px solid var(--accent)}
+    .price{font-size:14px; color:var(--muted)}
+
+    /* Layout with sticky sidebar */
+    .layout{display:grid; grid-template-columns:1fr; gap:16px}
+    @media (min-width:960px){ .layout{grid-template-columns:2fr 1fr} }
+    .aside{position:relative}
+    @media (min-width:960px){ .aside{position:sticky; top:18px; align-self:start} }
+    .sidecard{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; box-shadow:0 8px 20px rgba(0,0,0,.22); margin-bottom:16px}
+    .sidecard h4{margin:0 0 8px; letter-spacing:.2px}
+    .sidecard p{margin:0 0 10px; color:var(--muted); font-size:14px; line-height:1.55}
+    .btn-secondary{display:inline-block; padding:9px 12px; border-radius:10px; border:1px solid var(--line); background:rgba(255,255,255,.06)}
+    .btn-secondary:hover{filter:brightness(1.06)}
+
+    /* Testimonials */
+    blockquote{font-family:"Source Serif 4",serif; font-size:18px; line-height:1.6; color:#f3f6ff}
+    .testi{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px}
+    .tcard{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    .tmeta{margin-top:8px; font-size:13px; color:var(--muted)}
+
+    /* FAQ */
+    .faq details{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px 14px; margin-bottom:10px}
+    .faq summary{cursor:pointer; font-weight:700}
+    .faq summary::-webkit-details-marker{display:none}
+
+    /* Footer */
+    footer{margin:32px 0 18px; text-align:center; color:var(--muted); font-size:14px}
+    .footer-grid{display:grid; grid-template-columns:1fr; gap:16px; text-align:left}
+    @media (min-width:800px){ .footer-grid{grid-template-columns:2fr 1fr 1fr} }
+    .fcol h4{margin:0 0 8px}
+
+    /* Light cards overrides (activate via body.lightcards) */
+    .lightcards .card,
+    .lightcards .sidecard,
+    .lightcards .faq details {
+      background:#ffffff;
+      color:#0f1625;
+      border:1px solid #dbe5f3;
+    }
+    .lightcards .card p,
+    .lightcards ul.small,
+    .lightcards .tmeta,
+    .lightcards .small { color:#253042; }
+
+    .lightcards .btn-secondary { background:#fff; border-color:#e4ecf7 }
+    .lightcards .trustlogo { background:#fff; border-color:#e4ecf7; color:#4b5563 }
+  </style>
+</head>
+
+<body class="lightcards">
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <svg class="mini" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="10" width="20" height="8" fill="#9b1c1c"/><rect x="4" y="6" width="4" height="12" fill="#9b1c1c"/><rect x="10" y="4" width="4" height="14" fill="#9b1c1c"/><rect x="16" y="6" width="4" height="12" fill="#9b1c1c"/></svg>
+        VetNestUSA
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="resources.html">Resources</a>
+        <a href="join.html">Join</a>
+        <a href="donate.html">Donate</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="brandrow">
+      <svg class="castle" viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VetNestUSA Castle (homage)">
+        <defs>
+          <linearGradient id="brick" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#9b1c1c"/><stop offset="1" stop-color="#7f1212"/>
+          </linearGradient>
+          <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity=".35"/>
+          </filter>
+        </defs>
+        <g fill="url(#brick)" filter="url(#soft)" stroke="#ff4d4d" stroke-width="2">
+          <rect x="24" y="70" width="272" height="68" rx="4"/>
+          <rect x="34" y="34" width="52" height="104" rx="4"/>
+          <rect x="134" y="18" width="52" height="120" rx="4"/>
+          <rect x="234" y="34" width="52" height="104" rx="4"/>
+          <rect x="34"  y="28" width="12" height="10"/>
+          <rect x="54"  y="28" width="12" height="10"/>
+          <rect x="74"  y="28" width="12" height="10"/>
+          <rect x="134" y="12" width="12" height="10"/>
+          <rect x="154" y="12" width="12" height="10"/>
+          <rect x="174" y="12" width="12" height="10"/>
+          <rect x="234" y="28" width="12" height="10"/>
+          <rect x="254" y="28" width="12" height="10"/>
+          <rect x="274" y="28" width="12" height="10"/>
+          <rect x="60"  y="64" width="18" height="8"/>
+          <rect x="100" y="64" width="18" height="8"/>
+          <rect x="202" y="64" width="18" height="8"/>
+          <rect x="242" y="64" width="18" height="8"/>
+          <rect x="148" y="94" width="24" height="44" rx="3" fill="#cc0000" stroke="none"/>
+          <circle cx="160" cy="116" r="3" fill="#ffd166" stroke="none"/>
+          <rect x="50"  y="92" width="20" height="24" rx="2" fill="#aa2c2c" stroke="none"/>
+          <rect x="250" y="92" width="20" height="24" rx="2" fill="#aa2c2c" stroke="none"/>
+        </g>
+      </svg>
+
+      <div class="title">VetNestUSA</div>
+      <div class="tag">Housing • Credible Services • Community Support</div>
+      <div class="figcap">Inspired by the Engineer castle — a symbol of building, resilience, and service. Original homage, not the official insignia.</div>
+      <div class="motto">Adapt and overcome</div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <h2>Built by and for the Veteran community</h2>
+      <p>Veterans access resources free. Sponsors and providers can join to responsibly list services and support the mission.</p>
+      <div class="meta">Verified listings • Transparent details • Respect for veterans</div>
+      <a href="join.html" class="cta">Join & Support Veterans</a>
+      <a href="donate.html" class="cta alt">Donate</a>
+      <a href="resources.html" class="cta ghost">Browse Resources</a>
+    </section>
+
+    <div class="hr"></div>
+
+    <!-- Trust bar -->
+    <section class="card" aria-label="Trusted by">
+      <div class="section-title">Trusted by veteran-affiliated sponsors</div>
+      <div class="trustbar">
+        <div class="trustlogo">Your Logo</div>
+        <div class="trustlogo">Local Housing</div>
+        <div class="trustlogo">Vet Services</div>
+        <div class="trustlogo">Community Org</div>
+      </div>
+      <p class="small" style="text-align:center;margin-top:6px">
+        Tasteful, legal sponsors only. <a href="join.html">See sponsor policy →</a>
+      </p>
+    </section>
+
+    <div class="hr"></div>
+
+    <div class="layout">
+      <main class="main">
+        <section class="grid" aria-labelledby="what-we-do">
+          <article class="card">
+            <h3 id="what-we-do">What We Do</h3>
+            <p>Connect veterans with safe housing, credible services, and strong community support—quickly, respectfully, and free for those who served.</p>
+            <ul class="small">
+              <li>Free access for veterans</li>
+              <li>Clear, verified resource listings</li>
+              <li>Human support when you need it</li>
+            </ul>
+          </article>
+
+        <article class="card">
+          <h3>Listing Standards</h3>
+          <p>All listings are reviewed for accuracy, transparency, and veteran respect. Misleading or inaccurate information is removed.</p>
+          <ul class="small">
+            <li>Real contact and pricing required</li>
+            <li>Veteran discounts must be honored as stated</li>
+            <li>Zero tolerance for predatory terms</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>How We Sustain the Mission</h3>
+          <p>Veterans never pay to access resources. Sponsors and providers choose Basic or Premium plans to promote services, which funds platform operations and growth.</p>
+        </article>
+        </section>
+
+        <div class="hr"></div>
+
+        <section class="card" id="join">
+          <h3>Get Started</h3>
+          <p class="small">Veterans use the platform free. Sponsors choose a plan below or see details on the <a href="join.html">Join page</a>.</p>
+
+          <div class="plans">
+            <div class="plan free">
+              <span class="badge">Veterans</span>
+              <h4>Free</h4>
+              <div class="price">$0 / month</div>
+              <p class="small">Access resource listings, tools, and support.</p>
+            </div>
+
+            <div class="plan basic">
+              <span class="badge">Sponsors</span>
+              <h4>Basic</h4>
+              <div class="price">$50 / month</div>
+              <ul class="small">
+                <li>Business listing & contact</li>
+                <li>Veteran-affiliated discount flag</li>
+                <li>Email support</li>
+              </ul>
+              <div id="paypal-basic"></div>
+            </div>
+
+            <div class="plan premium">
+              <span class="badge">Sponsors</span>
+              <h4>Premium</h4>
+              <div class="price">$100 / month</div>
+              <ul class="small">
+                <li>Featured placement + badge</li>
+                <li>Priority support</li>
+                <li>Early access to new features</li>
+              </ul>
+              <div id="paypal-premium"></div>
+            </div>
+          </div>
+          <p class="small">Questions? <a href="mailto:kevinkitchens@kevinvetnestmx.com">kevinkitchens@kevinvetnestmx.com</a></p>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="card">
+          <h3 class="section-title">Voices from the community</h3>
+          <div class="testi">
+            <div class="tcard">
+              <blockquote>“Found a place near my VA appointments within a week. No runaround, no fees. Thank you.”</blockquote>
+              <div class="tmeta">— SSG J. R., Army Veteran</div>
+            </div>
+            <div class="tcard">
+              <blockquote>“Listing was verified and clear. We offered a veteran discount and saw quality referrals.”</blockquote>
+              <div class="tmeta">— E. Torres, Property Manager</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="card" id="contact">
+          <h3>Contact & Support</h3>
+          <p>Email: <a href="mailto:kevinkitchens@kevinvetnestmx.com">kevinkitchens@kevinvetnestmx.com</a></p>
+          <p class="small">Veteran-affiliated sponsors may be eligible for discounted placement.</p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="card faq">
+          <h3 class="section-title">FAQ</h3>
+          <details>
+            <summary>Do veterans pay to use VetNestUSA?</summary>
+            <div class="small">No. Veterans access resources for free. Operations are funded by sponsors and donations.</div>
+          </details>
+          <details>
+            <summary>How do you handle false or predatory listings?</summary>
+            <div class="small">We verify details and remove misleading content. Report issues to <a href="mailto:kevinkitchens@kevinvetnestmx.com">kevinkitchens@kevinvetnestmx.com</a>.</div>
+          </details>
+          <details>
+            <summary>Can I sponsor or advertise?</summary>
+            <div class="small">Yes—if it’s respectful, legal, and transparent. See <a href="join.html">sponsor guidelines</a>.</div>
+          </details>
+        </section>
+      </main>
+
+      <aside class="aside">
+        <div class="sidecard">
+          <h4>Donate to VetNestUSA</h4>
+          <p>Your donation keeps access free for veterans and helps us verify listings.</p>
+          <a href="donate.html" class="btn-secondary">Donate now →</a>
+        </div>
+        <div class="sidecard">
+          <h4>Browse Resources & Amenities</h4>
+          <p>See hospitals, groceries, parks, and transit around any address.</p>
+          <a href="resources.html" class="btn-secondary">Open map →</a>
+        </div>
+        <div class="sidecard">
+          <h4>Report a False or Predatory Listing</h4>
+          <p>We review every report promptly. Inaccurate or predatory listings are removed.</p>
+          <p class="small"><a href="mailto:kevinkitchens@kevinvetnestmx.com?subject=Report%20Listing">Email a report</a> with the business name, link, and what’s wrong.</p>
+        </div>
+        <div class="sidecard">
+          <h4>Advertising & Sponsor Policy</h4>
+          <p>We accept tasteful, legal sponsor listings that serve veterans. We reject misleading claims, hidden fees, or predatory terms.</p>
+          <p class="small"><a href="join.html">Sponsor guidelines →</a></p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="hr"></div>
+
+    <footer class="wrap">
+      <div class="footer-grid">
+        <div class="fcol">
+          <h4>About VetNestUSA</h4>
+          <p class="small">Built by a combat-disabled Army Airborne Combat Engineer. Our mission is simple: help veterans find safe housing and credible resources—fast, respectfully, and free.</p>
+        </div>
+        <div class="fcol">
+          <h4>Links</h4>
+          <p class="small"><a href="resources.html">Resources & Map</a><br><a href="join.html">Join / Sponsor</a><br><a href="donate.html">Donate</a></p>
+        </div>
+        <div class="fcol">
+          <h4>Contact</h4>
+          <p class="small"><a href="mailto:kevinkitchens@kevinvetnestmx.com">kevinkitchens@kevinvetnestmx.com</a><br>Suicide & Crisis Lifeline: <strong>988</strong></p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:14px">
+        © <span id="year"></span> VetNestUSA
+      </div>
+    </footer>
+  </div>
+
+  <!-- Sticky Donate Button -->
+  <button class="fab" onclick="location.href='donate.html'">Donate</button>
+
+  <!-- PayPal SDK (your Client ID) -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AUz38Ohl2UvqGRaCCYZpAaFTWK3t049StHahAYLxzv0GZbwzOZMES4fDYgie5yq0h3YLT0eWZDp70uCJ&vault=true&intent=subscription"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    if (window.paypal) {
+      paypal.Buttons({
+        style: { layout: 'vertical', label: 'subscribe', shape: 'rect' },
+        createSubscription: (data, actions) => actions.subscription.create({ plan_id: 'P-3NS334670B097494ENCI2GIA' })
+      }).render('#paypal-basic').catch(err => console.error('Basic button error:', err));
+
+      paypal.Buttons({
+        style: { layout: 'vertical', label: 'subscribe', shape: 'rect' },
+        createSubscription: (data, actions) => actions.subscription.create({ plan_id: 'P-4YW70342253559620NCI2EFA' })
+      }).render('#paypal-premium').catch(err => console.error('Premium button error:', err));
+    } else {
+      console.error('PayPal SDK failed to load.');
+    }
+  </script>
+</body>
+</html>
+
