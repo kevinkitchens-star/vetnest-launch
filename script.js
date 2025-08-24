@@ -31,3 +31,4 @@ paypal.Buttons({
         alert('Something went wrong during checkout. Please try again.');
     }
 }).render('#paypal-button-container');
+const API_BASE = 'https://<your-api-on-render>.onrender.com';
